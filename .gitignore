@@ -1,0 +1,11 @@
+# OS / editor noise
+Thumbs.db
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Internal agent notes (per AGENTS.md "Internal Notes Hygiene")
+.ignore/
+.plan/
+.feature/
