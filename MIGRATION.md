@@ -1,5 +1,19 @@
 # Migration Guide
 
+## 1.1.0 → 1.2.0
+
+### What changed
+
+- Section 2.1 rewritten: "proactive" now explicitly means choosing the right tools **for the asked task**, with examples of scope creep.
+- Section 1.1 clarified: improvements noticed while answering a question should be reported, not applied.
+- Section 3 notes it can be deleted when the project has no docs workflow.
+
+### How to upgrade
+
+1. Replace `AGENTS.md` (or `AGENTS.xml-blocks.md` if using the XML variant).
+2. Re-apply your project's `ADAPT` values in section 3.
+3. Update `modular/` and `modular/xml/` if you use the modular layout.
+
 ## 1.0.0 → 1.1.0
 
 ### What changed
@@ -13,7 +27,7 @@
 
 1. Replace your project's `AGENTS.md` with the new `AGENTS.md`.
 2. If your project uses Laravel Boost / XML-ish blocks, use `AGENTS.xml-blocks.md` instead.
-3. Re-apply your project's `ADAPT` values in section 3 — they are not carried over automatically.
+3. Re-apply your project's `ADAPT` values in section 3; they are not carried over automatically.
 4. Update your project's `CHANGELOG.md` if you track rules changes.
 
 ### Behavior changes to review

@@ -2,16 +2,24 @@
 
 All notable changes to this template are documented here.
 
+## [1.2.0] - 2026-11-19
+
+### Changed
+
+- Rewrote section 2.1 to define "proactive" as choosing the right tools **for the asked task**, with ✅/❌ examples of scope creep.
+- Clarified section 1.1: question-vs-implementation now says to report improvements instead of applying them; scope guard now defines proactive as tool choice, not extra work.
+- Clarified section 3: it can be deleted when the project has no docs workflow.
+
 ## [1.1.0] - 2026-11-19
 
 ### Added
 
-- `AGENTS.xml-blocks.md` — the same rules wrapped in `<guardrails>` / `<project-workflow-rules>` / `<docs-workflow-rules>` blocks, for Laravel Boost-style generated versions.
+- `AGENTS.xml-blocks.md`: the same rules wrapped in `<guardrails>` / `<project-workflow-rules>` / `<docs-workflow-rules>` blocks, for Laravel Boost-style generated versions.
 - Guardrails: secrets & credentials (1.3), Definition of Done and rollback (1.4), branch & commit (1.2), dependency management (2.6), file encoding/line endings (1.1).
 - Push checklist now reviews `git diff --cached` for secrets, large files, and unintended changes, and confirms the target branch.
 - Destructive-operations list now includes `git branch -D`, `git tag -d`, `git rebase`, `git commit --amend` on pushed commits, and `rm -rf` outside build/temp directories.
 - Routing-map format definition and UI verification checklist (1.5).
-- `modular/` — clean per-section split (`guardrails.md`, `project-workflow-rules.md`, `docs-workflow-rules.md`, plus `index.md` and `README.md`); `modular/xml/` holds the same rules as XML blocks.
+- `modular/`: clean per-section split (`guardrails.md`, `project-workflow-rules.md`, `docs-workflow-rules.md`, plus `index.md` and `README.md`); `modular/xml/` holds the same rules as XML blocks.
 - Repo tooling: `.editorconfig`, `.markdownlint.json`, `.github/PULL_REQUEST_TEMPLATE.md`, `.github/ISSUE_TEMPLATE/`, `examples/`, `SECURITY.md`, `MIGRATION.md`.
 
 ### Changed

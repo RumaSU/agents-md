@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-This repository contains agent rules and helper scripts, not a running service. If you find a security issue — for example, a rule that encourages unsafe behavior, a leaked secret in the template, or a risky install script — report it privately:
+This repository contains agent rules and helper scripts, not a running service. If you find a security issue (for example, a rule that encourages unsafe behavior, a leaked secret in the template, or a risky install script), report it privately:
 
 1. Open a private security advisory on GitHub (Security → Advisories → Report a vulnerability), or
 2. Contact the maintainer directly.

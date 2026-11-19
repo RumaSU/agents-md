@@ -37,18 +37,18 @@ The repo config is `.markdownlint.json`.
 - **Guardrails take precedence** over workflow rules. Do not weaken a safety rail (destructive-op approval, stash guard, push checklist, no-claim-without-proof) without strong justification.
 - **Keep the core portable.** Per-project specifics belong in the `ADAPT` markers of the docs workflow adapter, not in the core rules.
 - **No secrets**, internal URLs, proprietary snippets, or personal data in any file.
-- **Docs updates only on explicit request**; changelog entries must reflect real, git-verified changes — never fabricated.
+- **Docs updates only on explicit request**; changelog entries must reflect real, git-verified changes; never fabricated.
 - **Internal notes** go in self-ignoring folders (`.ignore/`, `.plan/`, `.feature/`) and are never committed.
 
 ## Commit style
 
-Follow the existing repo style. `[skip ci]` is allowed only for commits that change nothing CI verifies (docs, markdown, `AGENTS.md`, `.gitignore`, rules folders) — per the rule inside `AGENTS.md` itself.
+Follow the existing repo style. `[skip ci]` is allowed only for commits that change nothing CI verifies (docs, markdown, `AGENTS.md`, `.gitignore`, rules folders), per the rule inside `AGENTS.md` itself.
 
 ## Versioning
 
 - Use semantic versioning (SemVer).
 - Update `CHANGELOG.md` for user-facing changes.
-- Tag releases (`v1.1.0`).
+- Tag releases (`v1.2.0`).
 
 ## Code of conduct & security
 

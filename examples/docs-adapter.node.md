@@ -1,7 +1,7 @@
-# Docs Adapter Example — Node / Vite
+# Docs Adapter Example: Node / Vite
 
 Filled values for the `ADAPT` fields in section 3 of `AGENTS.md`.
-Copy them into your project's `AGENTS.md`; sections 3.2 and 3.5–3.10 stay as in the core template.
+Copy them into your project's `AGENTS.md`; sections 3.2 and 3.5-3.10 stay as in the core template.
 
 ### 3.1 Site & tooling (ADAPT)
 

@@ -1,7 +1,7 @@
-# Docs Adapter Example — Laravel
+# Docs Adapter Example: Laravel
 
 Filled values for the `ADAPT` fields in section 3 of `AGENTS.md`.
-Copy them into your project's `AGENTS.md`; sections 3.2 and 3.5–3.10 stay as in the core template.
+Copy them into your project's `AGENTS.md`; sections 3.2 and 3.5-3.10 stay as in the core template.
 
 ### 3.1 Site & tooling (ADAPT)
 
@@ -11,10 +11,10 @@ No docs site; plain Markdown under `docs/`. No build step.
 
 `docs/` with:
 
-- `architecture/` — system overview and diagrams
-- `modules/` — one page per domain module
-- `guides/` — setup, deployment, local development
-- `reference/` — configuration and API reference
+- `architecture/`: system overview and diagrams
+- `modules/`: one page per domain module
+- `guides/`: setup, deployment, local development
+- `reference/`: configuration and API reference
 
 ### 3.4 Language (ADAPT)
 

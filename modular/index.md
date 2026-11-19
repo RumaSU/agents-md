@@ -1,6 +1,6 @@
-# Agent Rules — Modular Entry Point
+# Agent Rules: Modular Entry Point
 
-**Template version:** 1.1.0 · **License:** MIT (see `LICENSE`)
+**Template version:** 1.2.0 · **License:** MIT (see `LICENSE`)
 
 **Precedence:** Guardrails > Project Workflow > Docs Adapter. If rules conflict, the higher block wins.
 
@@ -10,8 +10,8 @@ Read this file first, then load only the rule files that match the task:
 
 | Rule file | Contents | Load when |
 |---|---|---|
-| `guardrails.md` | Safety rules: editing safety, git safety, secrets, verification, communication | Always — these are the core safety rails |
-| `project-workflow-rules.md` | Proactive tool usage, A–Z workflow, communication style, delegation, internal notes, dependencies | Any implementation, fix, or feature task |
+| `guardrails.md` | Safety rules: editing safety, git safety, secrets, verification, communication | Always; these are the core safety rails |
+| `project-workflow-rules.md` | Proactive tool usage, A-Z workflow, communication style, delegation, internal notes, dependencies | Any implementation, fix, or feature task |
 | `docs-workflow-rules.md` | Docs adapter (with `ADAPT` markers) | Documentation changes |
 
 ## Routing map
@@ -25,7 +25,7 @@ Read this file first, then load only the rule files that match the task:
 ## Variants
 
 - **Clean (this folder):** plain Markdown, one file per top-level section of `../AGENTS.md`.
-- **XML blocks (`xml/`):** the same content wrapped in `<guardrails>`, `<project-workflow-rules>`, `<docs-workflow-rules>` tags — for Laravel Boost-style generated versions.
+- **XML blocks (`xml/`):** the same content wrapped in `<guardrails>`, `<project-workflow-rules>`, `<docs-workflow-rules>` tags, for Laravel Boost-style generated versions.
 
 ## Notes
 

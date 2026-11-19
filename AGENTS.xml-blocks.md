@@ -1,11 +1,11 @@
-# AGENTS.md — Agent Rules
+# AGENTS.md: Agent Rules
 
 Safety-first rules for AI coding agents (OpenCode or any runtime that reads `AGENTS.md`).
 Read this before any workflow or implementation step.
 
 **Precedence:** Guardrails > Project Workflow > Docs Adapter. If rules conflict, the higher block wins.
 
-**Template version:** 1.1.0 · **License:** MIT (see `LICENSE`)
+**Template version:** 1.2.0 · **License:** MIT (see `LICENSE`)
 
 <guardrails>
 === guardrails (safe execution) ===
@@ -16,20 +16,20 @@ Safety-first constraints for agent behavior.
 
 ### 1.1 Editing safety
 
-- **Question vs implementation:** if the user asks a question (e.g. "this is a question", "just check"), answer only — never edit files until explicitly told to implement.
-- **Scope guard:** do not refactor, delete, or "improve" beyond the asked scope. Spot problems outside scope? Report them; do not fix them silently. Proactive tool usage (section 2.1) stays inside the asked task and never expands the scope.
-- **Re-scan before editing:** never edit from memory of a file's earlier state — re-read it fresh every time. Content you did not write must be preserved and built on, never discarded, reverted, overwritten, or "fixed", unless the user explicitly asks to replace, refactor, or remove it. If a conflict with the task appears, stop and report instead of silently adapting.
+- **Question vs implementation:** if the user asks a question (e.g. "this is a question", "just check"), answer only. Never edit files until explicitly told to implement. This applies even when you notice improvements: report them instead of applying them.
+- **Scope guard:** do not refactor, delete, or "improve" beyond the asked scope. Spot problems outside scope? Report them; do not fix them silently. Proactive tool usage (section 2.1) stays inside the asked task and never expands the scope. Proactive means choosing the right tools for the task, not doing extra work.
+- **Re-scan before editing:** never edit from memory of a file's earlier state. Re-read it fresh every time. Content you did not write must be preserved and built on, never discarded, reverted, overwritten, or "fixed", unless the user explicitly asks to replace, refactor, or remove it. If a conflict with the task appears, stop and report instead of silently adapting.
 - **File handling:** preserve the existing file encoding and line endings unless the task is explicitly about them.
-- **Foreign changes:** files shown in `git status` that you did not change belong to the user/another agent — report them, never stash/restore/commit/revert them. Build byproducts (e.g. `npm run build`, `composer install`) also regenerate files — expected noise, never revert or commit unless asked.
+- **Foreign changes:** files shown in `git status` that you did not change belong to the user/another agent. Report them; never stash/restore/commit/revert them. Build byproducts (e.g. `npm run build`, `composer install`) also regenerate files; expected noise, never revert or commit unless asked.
 - **Destructive operations need an explicit yes:** never run `git rm` on tracked files, `git reset --hard`, `git clean`, `git restore`/`git checkout -- <file>`, `git branch -D`, `git tag -d`, `git rebase`, `git commit --amend` on pushed commits, force-push, `rm -rf` outside build/temp directories, deleting tracked files, or dropping published assets without explicit confirmation; when in doubt, list what would be deleted/lost first.
-- **Stash guard:** `git stash drop` and `git stash clear` destroy stored work — an explicit yes is required, and show the basis plus a file-stat summary of the stash first; never `git stash` on your own initiative; propose `git stash pop`/`apply` only with the conflict risk stated for a dirty working tree; `git stash list`/`stash show` are safe to read freely.
+- **Stash guard:** `git stash drop` and `git stash clear` destroy stored work. An explicit yes is required, and show the basis plus a file-stat summary of the stash first; never `git stash` on your own initiative; propose `git stash pop`/`apply` only with the conflict risk stated for a dirty working tree; `git stash list`/`stash show` are safe to read freely.
 
 ### 1.2 Git safety
 
 - **Git remote actions:** never `git push` (or set/push upstreams) without explicit request; commits follow repo style.
 - **Branch & commit:** do not commit directly to `main`/`master` unless the user explicitly asks; follow the repo's branch naming and commit conventions; keep commits focused (one logical change); never rewrite shared history (rebase/amend/force-push) without explicit approval.
 - **Push checklist:** before `git push`, show the staged list (what goes up), review `git diff --cached` for secrets, large files, and unintended changes, confirm the target branch, confirm nothing ignored-but-needed (e.g. `.env`) is sneaking in, and make sure the commit message matches repo conventions.
-- **[skip ci] rule:** add `[skip ci]` (or `[ci skip]`) only when the commit changes nothing CI verifies — docs, markdown, `AGENTS.md`, skills-lock, `.gitignore`, rules folders. Never for source code, tests, database migrations, dependency manifests/lockfiles, frontend/build files, `.env.example`, or CI workflow files. Adapt the "never" list to your stack; when in doubt, omit it.
+- **[skip ci] rule:** add `[skip ci]` (or `[ci skip]`) only when the commit changes nothing CI verifies: docs, markdown, `AGENTS.md`, skills-lock, `.gitignore`, rules folders. Never for source code, tests, database migrations, dependency manifests/lockfiles, frontend/build files, `.env.example`, or CI workflow files. Adapt the "never" list to your stack; when in doubt, omit it.
 
 ### 1.3 Secrets & credentials
 
@@ -42,11 +42,11 @@ Safety-first constraints for agent behavior.
 - **No claim without proof:** never say "done/fixed/working" without verifying evidence (test output, lint/types check, build success, route count, or a browser check for UI), and make that evidence available in the report.
 - **Definition of Done:** a task is Done only when tests pass (or no tests apply), lint/typecheck pass, the build succeeds, there are no new warnings/errors, docs are updated when section 3 requires it, and no known regressions remain.
 - **Blocked means stop:** stop and report when blocked by missing business logic, permissions, or requirements whose ambiguity materially changes the outcome; do not guess business logic. For minor choices (naming, formatting, default values), pick a reasonable option and note it.
-- **Rollback:** if a change breaks the build or tests, stop, report, and revert safely — non-destructive fixes (new commit) are fine, but destructive reverts need explicit confirmation (see 1.1).
+- **Rollback:** if a change breaks the build or tests, stop, report, and revert safely. Non-destructive fixes (new commit) are fine, but destructive reverts need explicit confirmation (see 1.1).
 
 ### 1.5 Communication
 
-- **Language:** chat responses use the user's language (whatever they write). Code, comments, and commit messages default to English. Committed docs follow the language set in section 3 (`ADAPT`) — an explicit docs-language choice there overrides the English default. The user's language is allowed for reports/notes inside internal folders (e.g. `.ignore/`, `.plan/`, `.feature/`).
+- **Language:** chat responses use the user's language (whatever they write). Code, comments, and commit messages default to English. Committed docs follow the language set in section 3 (`ADAPT`); an explicit docs-language choice there overrides the English default. The user's language is allowed for reports/notes inside internal folders (e.g. `.ignore/`, `.plan/`, `.feature/`).
 - **Routing map first (if present):** before editing, open the project's rules index (e.g. `.ai/rules/index.md` and/or `.agents/rules/master.md` if they exist); load a detail leaf only when its routing-map row matches the task; never load the folder wholesale. A routing map is a Markdown table mapping task types to detail leaves (e.g. `| Database migrations | rules/database.md |`); create detail leaves only for task types that recur.
 - **UI verification:** for frontend/view changes, verify at desktop and mobile viewports, check the browser console for errors, check for failed network requests, take screenshots where useful, and check basic accessibility (keyboard navigation, labels).
 - **Long sessions end with a handoff:** close with Done / Pending / Decisions-needed so the next session or reviewer can continue without re-deriving context. Done = what changed and how it was verified; Pending = what remains; Decisions-needed = open questions with options.
@@ -59,14 +59,23 @@ Safety-first constraints for agent behavior.
 
 ### 2.1 Proactive Skill & Tool Usage Policy
 
-- **Autonomous Execution:** you are required to proactively scan, load, and execute relevant skills, tools, or MCP servers available in this repository without waiting for explicit instructions or manual `@mention` from the user.
-- **Strict Trigger Bypass:** do not act passively. If a task requires code inspection, database analysis, or testing, immediately invoke the appropriate tool automatically — within the asked scope (see 1.1).
+Proactive means choosing the right tools and approach **for the asked task**, not expanding the task.
 
-### 2.2 End-to-End Workflow (A–Z)
+- **Autonomous execution:** scan, load, and run the relevant skills, tools, or MCP servers without waiting for an explicit `@mention`, but only within the asked scope.
+- **Strict trigger bypass:** if the task needs code inspection, database analysis, or testing, invoke the tool automatically instead of asking permission for the tool itself.
+- **Questions are not tasks:** if the user asks a question, answer it; do not edit files or "proactively" fix things (see 1.1).
+- **Proactive vs scope creep:**
+  - ✅ Task: "fix the bug in `X`" → read `X`, run the relevant tests, inspect related callers.
+  - ❌ Task: "fix the bug in `X`" → also refactor `Y`, rename variables, update docs, or upgrade dependencies.
+  - ✅ Task: "add endpoint `Z`" → inspect routes, models, and tests; add tests for `Z`.
+  - ❌ Task: "add endpoint `Z`" → also reformat the repo, add unrelated features, or change unrelated modules.
+- If a proactive step would go beyond the asked scope, report it instead of doing it.
+
+### 2.2 End-to-End Workflow (A-Z)
 
 Whenever you receive a task to create, fix, or modify a feature, execute the following sequential workflow automatically within a single session:
 
-1. **Analysis & Context Scan:** read and gather the entire code structure of the related module from end-to-end (A–Z) using available tools or file searches before modifying anything.
+1. **Analysis & Context Scan:** read and gather the entire code structure of the related module from end-to-end (A-Z) using available tools or file searches before modifying anything.
 2. **Implementation:** write or refactor code strictly adhering to the project's language/framework conventions and existing project patterns.
 3. **Dynamic Testing:**
    - Do not blindly rely on or rigidly stick to pre-existing tests if they no longer fit the current context. Instead, adapt, modify, or add new tests tailored specifically to the exact behavior, edge cases, and conditions occurring during the current implementation.
@@ -97,7 +106,7 @@ Whenever you receive a task to create, fix, or modify a feature, execute the fol
   *
   !.gitignore
   ```
-  If the `.gitignore` is missing, create it with the content above. If it exists with different content, do not overwrite it — report the mismatch and ask before changing (guardrail 1.1 applies).
+  If the `.gitignore` is missing, create it with the content above. If it exists with different content, do not overwrite it. Report the mismatch and ask before changing (guardrail 1.1 applies).
 - Never place committed deliverables inside these folders.
 
 ### 2.6 Dependency Management
@@ -112,6 +121,8 @@ Whenever you receive a task to create, fix, or modify a feature, execute the fol
 
 ## 3. Docs Workflow Rules (Adapter)
 
+**If your project has no docs workflow, delete this section.**
+
 **This section is a per-project adapter, not a core rule.** Adapt the `ADAPT` fields below to your stack before use. The core guardrails and project workflow remain portable.
 
 Project documentation deliverables (e.g. `docs/`, README, API docs, changelog). Internal working notes are NOT governed here.
@@ -122,7 +133,7 @@ Describe the doc tool (e.g. VitePress, Docusaurus, MkDocs) and its config/comman
 
 ### 3.2 Scope
 
-Committed documentation deliverables only; never commit build artifacts (e.g. `dist/`, `cache/`) or internal notes (e.g. `docs/.local/`). Internal notes folders must follow Internal Notes Hygiene (create folder + `.gitignore` with `*` / `!.gitignore`) — see 2.5.
+Committed documentation deliverables only; never commit build artifacts (e.g. `dist/`, `cache/`) or internal notes (e.g. `docs/.local/`). Internal notes folders must follow Internal Notes Hygiene (create folder + `.gitignore` with `*` / `!.gitignore`), see 2.5.
 
 ### 3.3 Location & structure (ADAPT)
 

@@ -1,7 +1,7 @@
 # Agent Rules Template
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version 1.1.0](https://img.shields.io/badge/version-1.1.0-blue.svg)](CHANGELOG.md)
+[![Version 1.2.0](https://img.shields.io/badge/version-1.2.0-blue.svg)](CHANGELOG.md)
 
 Portable, safety-first rules for AI coding agents (OpenCode, Laravel Boost, or any runtime that reads `AGENTS.md`). Copy the file into a project, adapt the marked spots, and every agent session starts from the same guardrails.
 
@@ -10,13 +10,13 @@ Portable, safety-first rules for AI coding agents (OpenCode, Laravel Boost, or a
 | File / folder | Purpose |
 |---|---|
 | `AGENTS.md` | Core template (default): guardrails, project workflow rules, docs workflow adapter (with `ADAPT` markers) |
-| `AGENTS.xml-blocks.md` | Same rules wrapped in `<guardrails>` / `<project-workflow-rules>` / `<docs-workflow-rules>` blocks — for Laravel Boost-style generated versions |
+| `AGENTS.xml-blocks.md` | Same rules wrapped in `<guardrails>` / `<project-workflow-rules>` / `<docs-workflow-rules>` blocks, for Laravel Boost-style generated versions |
 | `modular/` | Clean per-section split (default): `guardrails.md`, `project-workflow-rules.md`, `docs-workflow-rules.md` + `index.md`; `xml/` subfolder has the XML-block variant |
 | `install.ps1` / `install.sh` | Copy `AGENTS.md` into a target project folder (refuses to overwrite unless forced) |
 | `examples/` | Filled docs-adapter examples (Laravel, Node/Vite) + routing-map example |
 | `CONTRIBUTING.md` | How to propose changes to these rules |
 | `SECURITY.md` | How to report a security issue |
-| `MIGRATION.md` | Upgrade notes (1.0.0 → 1.1.0) |
+| `MIGRATION.md` | Upgrade notes (1.0.0 → 1.2.0) |
 | `CHANGELOG.md` | Version history |
 | `LICENSE` | MIT |
 | `.gitignore` | OS/editor noise + internal agent-notes folders |
@@ -58,17 +58,17 @@ Prefer one file per section? Use `modular/`:
 | `modular/docs-workflow-rules.md` | Clean Markdown |
 | `modular/xml/*.md` | XML-block variant (`<guardrails>`, `<project-workflow-rules>`, `<docs-workflow-rules>`) |
 
-Start at `modular/index.md` — it states the precedence and which file to load for which task. See `modular/README.md` for assembly and customization notes.
+Start at `modular/index.md`; it states the precedence and which file to load for which task. See `modular/README.md` for assembly and customization notes.
 
 ## Compatibility
 
-- **OpenCode** — reads `AGENTS.md` from the project root (and user-level rules from `~/.config/opencode/AGENTS.md`).
-- **Laravel Boost** — use `AGENTS.xml-blocks.md` to keep the XML-like block structure that generated versions expect.
-- **Other runtimes** — the rules are plain Markdown; rename or adapt as your tool requires (e.g. `CLAUDE.md` for Claude Code, `.cursor/rules` for Cursor).
+- **OpenCode**: reads `AGENTS.md` from the project root (and user-level rules from `~/.config/opencode/AGENTS.md`).
+- **Laravel Boost**: use `AGENTS.xml-blocks.md` to keep the XML-like block structure that generated versions expect.
+- **Other runtimes**: the rules are plain Markdown; rename or adapt as your tool requires (e.g. `CLAUDE.md` for Claude Code, `.cursor/rules` for Cursor).
 
 ## Customization
 
-The guardrails and project workflow are universal — keep them. The docs workflow is an adapter — fill the `ADAPT` markers per project:
+The guardrails and project workflow are universal; keep them. The docs workflow is an adapter; fill the `ADAPT` markers per project:
 
 | Field | Example value |
 |---|---|
@@ -83,13 +83,13 @@ See `examples/docs-adapter.laravel.md` and `examples/docs-adapter.node.md` for f
 
 - **Copy per project**: use the install scripts, or download the raw file from this repo.
 - **GitHub template**: press "Use this template" for a fresh repo per project.
-- **Dotfiles-style**: keep this repo as the source of truth and re-copy after edits. There is no auto-sync — changes here do not propagate to projects that already copied the file.
+- **Dotfiles-style**: keep this repo as the source of truth and re-copy after edits. There is no auto-sync; changes here do not propagate to projects that already copied the file.
 
 ## Maintenance
 
-- Bump the version in `CHANGELOG.md`; tag releases (`v1.1.0`).
+- Bump the version in `CHANGELOG.md`; tag releases (`v1.2.0`).
 - A commit that changes only docs/markdown/`AGENTS.md` may use `[skip ci]` per the rule inside `AGENTS.md` itself (omit if the repo has no CI).
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).

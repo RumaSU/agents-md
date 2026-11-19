@@ -1,5 +1,7 @@
 ## 3. Docs Workflow Rules (Adapter)
 
+**If your project has no docs workflow, delete this section.**
+
 **This section is a per-project adapter, not a core rule.** Adapt the `ADAPT` fields below to your stack before use. The core guardrails and project workflow remain portable.
 
 Project documentation deliverables (e.g. `docs/`, README, API docs, changelog). Internal working notes are NOT governed here.
@@ -10,7 +12,7 @@ Describe the doc tool (e.g. VitePress, Docusaurus, MkDocs) and its config/comman
 
 ### 3.2 Scope
 
-Committed documentation deliverables only; never commit build artifacts (e.g. `dist/`, `cache/`) or internal notes (e.g. `docs/.local/`). Internal notes folders must follow Internal Notes Hygiene (create folder + `.gitignore` with `*` / `!.gitignore`) — see 2.5.
+Committed documentation deliverables only; never commit build artifacts (e.g. `dist/`, `cache/`) or internal notes (e.g. `docs/.local/`). Internal notes folders must follow Internal Notes Hygiene (create folder + `.gitignore` with `*` / `!.gitignore`), see 2.5.
 
 ### 3.3 Location & structure (ADAPT)
 

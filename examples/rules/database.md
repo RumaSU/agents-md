@@ -1,6 +1,6 @@
 # Database Rules (example detail leaf)
 
-> Example only — replace with your project's actual rules.
+> Example only; replace with your project's actual rules.
 
 - Create a new migration for schema changes; never edit an applied migration.
 - Provide a `down()` for every `up()`.
